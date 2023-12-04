@@ -1,30 +1,68 @@
 
+
 import './App.css'
 
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useState } from 'react';
+import Login from './components/Login';
+import Register from './components/Register';
 
- 
+import Home from './components/Home';
+import Dashboard from './pages/Dashboard';
+import Bitacora from './pages/Bitacora';
+import NoPage from './pages/NoPage';
+import Layout from './pages/Layout';
+import Edit from './pages/sidebar/Edit';
+
+const App = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [isRegistering, setIsRegistering] = useState(false);
+
+  const handleLogin = () => {
+    setIsAuthenticated(true);
+  };
+
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+  };
 
 
-import Login from './pages/Login';
-import Home from './pages/Home';
+  const handleRegister = () => {
+    setIsAuthenticated(true);
+  };
 
-
-
-function App() {
-
+  const toggleForm = () => {
+    setIsRegistering(!isRegistering);
+  };
 
   return (
-    <>
-    <Router>
+    <div>
+    {isAuthenticated ? (
+        <>
+   
+       <BrowserRouter>
       <Routes>
-        <Route path="/login" element={<Login/>} />
-        <Route path="/" element={<Home/>} />
-      </Routes>
-    </Router>
-       
-    </>
-  )
-}
+      
+        <Route  path="/" element={<Layout onLogout={handleLogout} />}>
+          <Route index  element={<Home />} />
+          <Route path="blogs" element={<Dashboard />} />
+          <Route path="contact" element={<Bitacora />} />
+         <Route path="/edit" element={<Edit />}></Route>
+          <Route path="*" element={<NoPage />} />
+        </Route>
 
-export default App
+      </Routes>
+    </BrowserRouter>
+
+         
+        </>
+      ) : isRegistering ? (
+        <Register onRegister={handleRegister} toggleForm={toggleForm} />
+      ) : (
+        <Login onLogin={handleLogin} toggleForm={toggleForm} />
+      )}
+    </div>
+  );
+};
+
+export default App;

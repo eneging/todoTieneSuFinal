@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PersonaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,4 +27,14 @@ Route::middleware(['api'])->group(function() {
     Route::post('/register', [AuthController::class, 'register']);
   
     Route::get('/getaccount', [AuthController::class, 'getaccount']);
+});
+
+Route::controller(PersonaController::class)->group(function() {
+    Route::get('/persona', 'index');
+    Route::get('/persona/{id}', 'show');
+    Route::post('/persona', 'store');
+    Route::put('/persona/{id}', 'update');
+    Route::delete('/persona/{id}', 'destroy');  
+
+
 });

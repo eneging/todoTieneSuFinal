@@ -12,7 +12,7 @@ class PersonaController extends Controller
      */
     public function index()
     {
-        //
+        return Persona::all();
     }
 
     /**
@@ -28,15 +28,30 @@ class PersonaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         $persona = new Persona;
+         $persona->primernombre = $request->primernombre;
+         $persona->segundonombre = $request->segundonombre;
+         $persona->primerapellido = $request->primerapellido;
+         $persona->segundoapellido = $request->segundoapellido;
+         $persona->fechacreacion = $request->fechacreacion;
+         $persona->fechamodificacion = $request->fechamodificacion;
+         $persona->usuariocreacion = $request->usuariocreacion;
+         $persona->usuariomodificacion = $request->usuariomodificacion;
+
+         $persona->save();
+
+         return "nuevo persona creada";
+
+
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Persona $persona)
+    public function show(Persona $persona , $id)
     {
-        //
+        $persona = Persona::fin($id);
+        return $persona;
     }
 
     /**
@@ -50,16 +65,32 @@ class PersonaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Persona $persona)
+    public function update(Request $request, $id)
     {
-        //
+        $persona = Persona::find($id);
+        $persona->primernombre = $request->primernombre;
+        $persona->segundonombre = $request->segundonombre;
+        $persona->primerapellido = $request->primerapellido;
+        $persona->segundoapellido = $request->segundoapellido;
+        $persona->fechacreacion = $request->fechacreacion;
+        $persona->fechamodificacion = $request->fechamodificacion;
+        $persona->usuariocreacion = $request->usuariocreacion;
+        $persona->usuariomodificacion = $request->usuariomodificacion;
+
+        $persona->save();
+
+        return "Persona actualizada";
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Persona $persona)
+    public function destroy($id)
     {
-        //
+        $persona = Persona::find($id);
+        $persona->delete();
+
+        return "Persona eliminada";
     }
 }
