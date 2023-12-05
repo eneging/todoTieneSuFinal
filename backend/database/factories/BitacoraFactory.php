@@ -17,7 +17,14 @@ class BitacoraFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'bitacora'=>fake()->name(),
+          'idusuario'=>fake()->numberBetween(1,15),
+            'fecha'=>fake()->date(),
+            'hora'=>fake()->time(),
+            'ip'=>fake()->phoneNumber(),
+            'so'=>fake()->name(),
+            'navegador'=>fake()->imageUrl(),
+            'usuario'=>fake()->name()
         ];
     }
 }

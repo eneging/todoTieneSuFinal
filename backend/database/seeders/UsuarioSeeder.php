@@ -2,17 +2,18 @@
 
 namespace Database\Seeders;
 
-use App\Models\Pagina;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class PaginaSeeder extends Seeder
+
+class UsuarioSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Pagina::factory(20)->create();
+        User::factory(30)->create();
     }
 }

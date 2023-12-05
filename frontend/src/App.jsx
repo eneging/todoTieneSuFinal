@@ -1,30 +1,69 @@
 
+
 import './App.css'
 
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useState } from 'react';
+import Login from './components/Login';
+import Register from './components/Register';
 
- 
 
-
-import Login from './pages/Login';
+import NoPage from './pages/NoPage';
+import Layout from './pages/Layout';
+import Edit from './pages/sidebar/Edit';
+import Usuarios from './pages/Usuarios';
 import Home from './pages/Home';
 
 
 
-function App() {
+const App = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [isRegistering, setIsRegistering] = useState(false);
 
+  const handleLogin = () => {
+    setIsAuthenticated(true);
+  };
+
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+  };
+
+
+  const handleRegister = () => {
+    setIsAuthenticated(true);
+  };
+
+  const toggleForm = () => {
+    setIsRegistering(!isRegistering);
+  };
 
   return (
-    <>
-    <Router>
+    <div>
+    {isAuthenticated ? (
+        <>
+   
+       <BrowserRouter>
       <Routes>
-        <Route path="/login" element={<Login/>} />
-        <Route path="/" element={<Home/>} />
-      </Routes>
-    </Router>
-       
-    </>
-  )
-}
+      
+        <Route  path='/' element={<Layout onLogout={handleLogout} />}>
+        <Route path='/home' element={<Home></Home>} ></Route>
+        <Route path='/usuarios' element={<Usuarios/>}></Route>
+         <Route path="/edit" element={<Edit />}></Route>
+          <Route path="*" element={<NoPage />} />
+        </Route>
 
-export default App
+      </Routes>
+    </BrowserRouter>
+
+         
+        </>
+      ) : isRegistering ? (
+        <Register onRegister={handleRegister} toggleForm={toggleForm} />
+      ) : (
+        <Login onLogin={handleLogin} toggleForm={toggleForm} />
+      )}
+    </div>
+  );
+};
+
+export default App;

@@ -18,6 +18,17 @@ class AuthController extends Controller
     {
         $this->middleware('auth:api', ['except' => ['login', 'register']]);//login, register methods won't go through the api guard
     }
+
+    public function index()
+    {
+        try {
+            $users = User::all();
+            return response()->json($users);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
     public function login(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -33,7 +44,9 @@ class AuthController extends Controller
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
-        return $this->respondWithToken($token);
+        $user = auth()->user();
+
+        return $this->respondWithToken($token, $user);
     }
 
     public function register(Request $request)
@@ -79,12 +92,14 @@ class AuthController extends Controller
     {
         return $this->respondWithToken(auth()->refresh());
     }
-    protected function respondWithToken($token)
+    protected function respondWithToken($token ,$user)
     {
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth('api')->factory()->getTTL() * 60 //mention the guard name inside the auth fn
+            'expires_in' => auth('api')->factory()->getTTL() * 60, //mention the guard name inside the auth fn
+            'users' => $user,
+        
         ]);
     }
 }

@@ -18,6 +18,12 @@ class RolFactory extends Factory
     {
         return [
             //
+
+            'rol' =>fake()->name(),
+            'fechacreacion'=>fake()->date(),
+            'fechamodificacion'=>fake()->date(),
+            'usuariocreacion'=>fake()->date(),
+            'usuariomodificacion'=>fake()->date()
         ];
     }
 }

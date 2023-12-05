@@ -12,7 +12,7 @@ class RolController extends Controller
      */
     public function index()
     {
-        //
+        return Rol::all();
     }
 
     /**
@@ -27,16 +27,24 @@ class RolController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        //
+    {    
+        $rol = new Rol();
+        $rol->rol = $request->rol;
+        $rol->fechacreacion = $request->fechacreacion;
+        $rol->fechamodificacion = $request->fechamodificacion;
+        $rol->usuariocreacion = $request->usuariocreacion;
+        $rol->usuariomodificacion =  $request->usuariomodificacion;
+        $rol->save();
+
+        return "nuevo rol creado";
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Rol $rol)
+    public function show(Rol $rol , $id)
     {
-        //
+        return Rol::find($id);
     }
 
     /**
@@ -50,16 +58,27 @@ class RolController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Rol $rol)
+    public function update(Request $request, $id)
     {
-        //
+        $rol = Rol::find($id);
+        $rol->rol = $request->rol;
+        $rol->fechacreacion = $request->fechacreacion;
+        $rol->fechamodificacion = $request->fechamodificacion;
+        $rol->usuariocreacion = $request->usuariocreacion;
+        $rol->usuariomodificacion =  $request->usuariomodificacion;
+        $rol->save();
+
+        return "Rol actualizado";
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Rol $rol)
+    public function destroy($id)
     {
-        //
+        $rol = Rol::find($id);
+        $rol->delete();
+
+        return "rol eliminado";
     }
 }
