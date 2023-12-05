@@ -50,7 +50,7 @@ class PersonaController extends Controller
      */
     public function show(Persona $persona , $id)
     {
-        $persona = Persona::fin($id);
+        $persona = Persona::find($id);
         return $persona;
     }
 

@@ -12,7 +12,7 @@ class BitacoraController extends Controller
      */
     public function index()
     {
-        //
+        return Bitacora::all();
     }
 
     /**
@@ -28,7 +28,21 @@ class BitacoraController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $bitacora = new Bitacora;
+        
+
+       $bitacora->bitacora = $request->bitacora;
+       $bitacora->idusuario = $request->idusuario;
+       $bitacora->fecha = $request->fecha;
+       $bitacora->hora = $request->hora;
+       $bitacora->ip = $request->ip;
+       $bitacora->so = $request->so;
+       $bitacora->navegador = $request->navegador;
+       $bitacora->usuario = $request->usuario;
+
+       $bitacora->save();
+
+       return "bitacora Creada";
     }
 
     /**
@@ -50,16 +64,33 @@ class BitacoraController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Bitacora $bitacora)
+    public function update(Request $request, $id)
     {
-        //
+        $bitacora = Bitacora::find($id);
+        
+
+       $bitacora->bitacora = $request->bitacora;
+       $bitacora->idusuario = $request->idusuario;
+       $bitacora->fecha = $request->fecha;
+       $bitacora->hora = $request->hora;
+       $bitacora->ip = $request->ip;
+       $bitacora->so = $request->so;
+       $bitacora->navegador = $request->navegador;
+       $bitacora->usuario = $request->usuario;
+
+       $bitacora->save();
+
+       return "bitacora actualizada";
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Bitacora $bitacora)
+    public function destroy($id)
     {
-        //
+        $bitacora = Bitacora::find($id);
+        $bitacora->delete();
+
+        return "bitacora eliminada";
     }
 }

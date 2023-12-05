@@ -25,8 +25,8 @@ return new class extends Migration
             $table->string('usuariocreacion')->nullable();
             $table->string('usuariomodificacion')->nullable();
             $table->rememberToken();
-            $table->foreign('idpersona')->references('idpersona')->on('personas');
-            $table->foreign('idrol')->references('idrol')->on('roles');
+            $table->foreign('idpersona')->references('idpersona')->on('personas')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('idrol')->references('idrol')->on('roles')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

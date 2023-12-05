@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Pagina extends Model
 {
     use HasFactory;
+
+    protected $primaryKey = 'idpagina';
 }

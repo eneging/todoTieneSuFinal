@@ -16,8 +16,18 @@ class PersonaFactory extends Factory
      */
     public function definition(): array
     {
+
+
+
         return [
-            //
+            'primernombre' =>fake()->name(),
+            'segundonombre'=>fake()->name(),
+              'primerapellido'=>fake()->name(),
+               'segundoapellido'=>fake()->lastName(),
+               'fechacreacion'=>fake()->date(),
+             'fechamodificacion'=>fake()->date(),
+               'usuariocreacion'=>fake()->date(),
+            'usuariomodificacion'=>fake()->date()
         ];
     }
 }

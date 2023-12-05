@@ -7,12 +7,14 @@ import { useState } from 'react';
 import Login from './components/Login';
 import Register from './components/Register';
 
-import Home from './components/Home';
-import Dashboard from './pages/Dashboard';
-import Bitacora from './pages/Bitacora';
+
 import NoPage from './pages/NoPage';
 import Layout from './pages/Layout';
 import Edit from './pages/sidebar/Edit';
+import Usuarios from './pages/Usuarios';
+import Home from './pages/Home';
+
+
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(true);
@@ -43,10 +45,9 @@ const App = () => {
        <BrowserRouter>
       <Routes>
       
-        <Route  path="/" element={<Layout onLogout={handleLogout} />}>
-          <Route index  element={<Home />} />
-          <Route path="blogs" element={<Dashboard />} />
-          <Route path="contact" element={<Bitacora />} />
+        <Route  path='/' element={<Layout onLogout={handleLogout} />}>
+        <Route path='/home' element={<Home></Home>} ></Route>
+        <Route path='/usuarios' element={<Usuarios/>}></Route>
          <Route path="/edit" element={<Edit />}></Route>
           <Route path="*" element={<NoPage />} />
         </Route>

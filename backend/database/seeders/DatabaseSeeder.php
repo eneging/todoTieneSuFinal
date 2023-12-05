@@ -18,5 +18,20 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+        $seeder1 = new PaginaSeeder;
+        $seeder1->run();
+
+        
+        $seeder2 = new PersonaSeeder;
+        $seeder2->run();
+
+        
+        $seeder1 = new RolSeeder;
+        $seeder1->run();
+
+        
+        $seeder1 = new UsuarioSeeder;
+        $seeder1->run();
     }
 }

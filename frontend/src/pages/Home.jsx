@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import Profile from "./img/8497923-removebg-preview.png"
+import Profile from "../components/img/8497923-removebg-preview.png"
 
 
 function Home() {
@@ -28,11 +28,6 @@ setUserData(userData);
 {userData ? (
        <>
 
-
-
-       
-        
-      
         <div className="flex">
 
          <div className="flex flex-col justify-center items-center p-[5vh] bg-slate-700 rounded ">

@@ -18,6 +18,17 @@ class AuthController extends Controller
     {
         $this->middleware('auth:api', ['except' => ['login', 'register']]);//login, register methods won't go through the api guard
     }
+
+    public function index()
+    {
+        try {
+            $users = User::all();
+            return response()->json($users);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
     public function login(Request $request)
     {
         $validator = Validator::make($request->all(), [

@@ -1,7 +1,12 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BitacoraController;
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\EnlaceController;
+use App\Http\Controllers\PaginaController;
 use App\Http\Controllers\PersonaController;
+use App\Http\Controllers\RolController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -35,6 +40,53 @@ Route::controller(PersonaController::class)->group(function() {
     Route::post('/persona', 'store');
     Route::put('/persona/{id}', 'update');
     Route::delete('/persona/{id}', 'destroy');  
+
+
+});
+
+Route::controller(PaginaController::class)->group(function() {
+    Route::get('/pagina', 'index');
+    Route::get('/pagina/{id}', 'show');
+    Route::post('/pagina', 'store');
+    Route::put('/pagina/{id}', 'update');
+    Route::delete('/pagina/{id}', 'destroy');  
+
+
+});
+
+Route::controller(RolController::class)->group(function() {
+    Route::get('/rol', 'index');
+    Route::get('/rol/{id}', 'show');
+    Route::post('/rol', 'store');
+    Route::put('/rol/{id}', 'update');
+    Route::delete('/rol/{id}', 'destroy');  
+
+
+});
+
+Route::controller(Controller::class)->group(function() {
+    Route::get('/usuario', 'index');
+    Route::post('/usuario', 'store');
+    Route::put('/usuario/{idusuario}', 'update');
+    Route::delete('/usuario/{id}', 'destroy');
+});
+
+Route::controller(EnlaceController::class)->group(function() {
+    Route::get('/enlace', 'index');
+    Route::get('/enlace/{id}', 'show');
+    Route::post('/enlace', 'store');
+    Route::put('/enlace/{id}', 'update');
+    Route::delete('/enlace/{id}', 'destroy');  
+
+
+});
+
+Route::controller(BitacoraController::class)->group(function() {
+    Route::get('/bitacora', 'index');
+    Route::get('/bitacora/{id}', 'show');
+    Route::post('/bitacora', 'store');
+    Route::put('/bitacora/{id}', 'update');
+    Route::delete('/bitacora/{id}', 'destroy');  
 
 
 });

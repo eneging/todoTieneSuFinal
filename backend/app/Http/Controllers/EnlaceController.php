@@ -12,7 +12,7 @@ class EnlaceController extends Controller
      */
     public function index()
     {
-        //
+        return Enlace::all();
     }
 
     /**
@@ -28,15 +28,26 @@ class EnlaceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $enlace = new Enlace; 
+
+       $enlace->idpagina = $request->idpagina;
+       $enlace->idrol = $request->idrol;
+        $enlace->descripcion = $request->descripcion;
+        $enlace->fechacreacion = $request->fechacreacion;
+        $enlace->fechamodificacion = $request->fechamodificaion;
+        $enlace->usuariocreacion = $request->usuariocreacion;
+        $enlace->usuariomodificacion = $request->usuariomodificacion;
+        $enlace->save();
+
+        return "nuevo enlace creado";
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Enlace $enlace)
+    public function show(Enlace $enlace , $id)
     {
-        //
+        return Enlace::find($id);
     }
 
     /**
@@ -50,16 +61,31 @@ class EnlaceController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Enlace $enlace)
+    public function update(Request $request, $id)
     {
-        //
+        $enlace =  Enlace::find($id); 
+
+        $enlace->idpagina = $request->idpagina;
+        $enlace->idrol = $request->idrol;
+         $enlace->descripcion = $request->descripcion;
+         $enlace->fechacreacion = $request->fechacreacion;
+         $enlace->fechamodificacion = $request->fechamodificaion;
+         $enlace->usuariocreacion = $request->usuariocreacion;
+         $enlace->usuariomodificacion = $request->usuariomodificacion;
+         $enlace->save();
+ 
+         return "Enlace actualizado";
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Enlace $enlace)
+    public function destroy($id)
     {
-        //
+        $enlace = Enlace::find($id);
+        $enlace->delete();
+
+        return "elimininado";
     }
 }
